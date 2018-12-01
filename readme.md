@@ -1,8 +1,12 @@
-# clear ip node library
+# clear ip golang library
 
-php client library for clear ip
+golang client library for clear ip
 
 ## Installation
+
+```bash
+go get -u github.com/clearip/clearip-go
+```
 
 ## usage
 
