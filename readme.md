@@ -16,7 +16,7 @@ Get ip info:
 package main
 
 import (
-	clearip "clearip"
+	clearip "github.com/clearip/clearip-go""
 	"fmt"
 )
 
