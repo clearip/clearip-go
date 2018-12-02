@@ -1,6 +1,6 @@
 # clear ip golang library
 
-golang client library for clear ip
+Golang client for Clearip web-service API to determine location of visitors based on their IP. 
 
 ## Installation
 
