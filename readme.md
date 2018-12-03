@@ -22,13 +22,13 @@ import (
 
 func main() {
 
-	clearipClient, err := clearip.NewClient("API key here")
+	clearipClient, err := clearip.NewClient("API KEY HERE")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	response, err := clearipClient.GetIpinfo("ip here")
+	response, err := clearipClient.IPInfo.GetAllDataByIP("IP HERE")
 	if err != nil {
 		fmt.Println(err)
 		return
