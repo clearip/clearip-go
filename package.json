@@ -1,0 +1,18 @@
+{
+  "name": "clearip",
+  "version": "1.1.0",
+  "description": "golang client library for clear ip",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clearip/clearip-go.git"
+  },
+  "author": "mohamadomr33@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clearip/clearip-go/issues"
+  },
+  "homepage": "https://github.com/clearip/clearip-go#readme"
+}
