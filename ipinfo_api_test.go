@@ -6,17 +6,17 @@ import (
 )
 
 func TestGetAllDataByIP(t *testing.T) {
-	http := TestCompanyHTTPClient{t: t, expectedURI: "/ip/iphere/json", APIKey: "apiKey", BaseURI: defaultBaseURI}
+	http := TestCompanyHTTPClient{t: t, fixtureFilename: "fixtures/ipinfo.json", expectedURI: "/ip/192.168.0.1/json", APIKey: "apiKey", BaseURI: defaultBaseURI}
 	api := IPInfoAPI{HTTP: http}
 
-	IPInfo, err := api.GetAllDataByIP("iphere")
+	IPInfo, err := api.GetAllDataByIP("192.168.0.1")
 
 	if err != nil {
 		t.Errorf("Error parsing fixture %s", err)
 	}
 
-	if IPInfo.country != "United States" {
-		t.Errorf("Name was %s, expected Important Company", IPInfo.country)
+	if IPInfo.Country != "Egypt" {
+		t.Errorf("Name was %s, expected Egypt", IPInfo.Country)
 	}
 }
 
