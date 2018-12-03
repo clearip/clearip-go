@@ -35,7 +35,7 @@ func NewHTTPClient(apiKey string, BaseURI string) CLHTTPClient {
 // Get default http client
 func (c CLHTTPClient) Get(url string, queryParams interface{}) ([]byte, error) {
 	// Setup request
-	req, _ := http.NewRequest("GET", c.BaseURI+url, nil)
+	req, _ := http.NewRequest("GET", c.BaseURI+url+"?apikey="+c.APIKey, nil)
 	req.Header.Add("Accept", "application/json")
 	if queryParams != nil {
 		addQueryParams(req, queryParams)

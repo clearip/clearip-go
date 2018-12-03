@@ -5,7 +5,7 @@ import "fmt"
 // Client main client for clear ip
 type Client struct {
 	HTTPClient CLHTTPClient
-	IPInfo     IPInfoRepository
+	IPRepo     IPInfoRepository
 	BaseURI    string
 	APIKey     string
 }
@@ -26,6 +26,6 @@ func NewClient(apiKey string) (*Client, error) {
 }
 
 func (c *Client) setup() {
-	c.IPInfo = IPInfoAPI{HTTP: c.HTTPClient}
+	c.IPRepo = IPInfoAPI{HTTP: c.HTTPClient}
 
 }
