@@ -1,63 +1,31 @@
 package clearip
 
-import (
-	"encoding/json"
-	"fmt"
-	"net/http"
-	"regexp"
-	"strings"
-	"time"
-)
+import "fmt"
 
-// Client is wrapper for net/http client with additional variables
+// Client main client for clear ip
 type Client struct {
-	APIKey string
-	URL    string
-	HTTP   *http.Client
+	HTTPClient CLHTTPClient
+	IPRepo     IPInfoRepository
+	BaseURI    string
+	APIKey     string
 }
 
-// NewClient returns custome http client
+// BaseURI base url for clearip
+const defaultBaseURI = "https://api.clearip.io"
+
+// NewClient returns a new ClearIp API client, configured with default HTTPClient.
 func NewClient(apiKey string) (*Client, error) {
 
 	if len(apiKey) == 0 {
 		return nil, fmt.Errorf("API key required")
 	}
-
-	httpClient := &http.Client{
-		Timeout: time.Second * 10,
-	}
-	return &Client{
-		URL:    "https://api.clearip.io",
-		APIKey: apiKey,
-		HTTP:   httpClient,
-	}, nil
+	clearip := Client{APIKey: apiKey, BaseURI: defaultBaseURI}
+	clearip.HTTPClient = NewHTTPClient(clearip.APIKey, clearip.BaseURI)
+	clearip.setup()
+	return &clearip, nil
 }
 
-// GetIpinfo send a get request for ip info
-func (c *Client) GetIpinfo(ip string) (map[string]interface{}, error) {
-
-	matches, _ := regexp.MatchString(`^(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$`, ip)
-	if !matches {
-		return nil, fmt.Errorf("Ip required")
-	}
-
-	getIPInfoURL := strings.Join([]string{c.URL, "/ip/", ip, "/json?apikey=", c.APIKey}, "")
-	resp, err := c.HTTP.Get(getIPInfoURL)
-	if err != nil {
-		return nil, err
-	}
-
-	if resp.StatusCode != 200 {
-		return nil, fmt.Errorf("auth error")
-	}
-
-	var response = make(map[string]interface{})
-
-	dec := json.NewDecoder(resp.Body)
-	if err := dec.Decode(&response); err != nil {
-		return nil, fmt.Errorf("error parsing json")
-	}
-
-	return response, nil
+func (c *Client) setup() {
+	c.IPRepo = IPInfoAPI{HTTP: c.HTTPClient}
 
 }
