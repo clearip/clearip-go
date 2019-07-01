@@ -1,11 +1,11 @@
-# IPTrace.io Golang client
+# iptrace.io Golang client
 
-Golang client for IPTrace web-service API to determine location of visitors based on their IP. 
+Golang client for iptrace web-service API to determine location of visitors based on their IP. 
 
 ## Installation
 
 ```bash
-go get -u github.com/IPTrace/IPTrace-go
+go get -u github.com/getiptrace/iptrace-go
 ```
 
 ## usage
@@ -16,19 +16,19 @@ Get ip info:
 package main
 
 import (
-	iptrace "github.com/IPTrace/IPTrace-go"
+	iptrace "github.com/getiptrace/iptrace-go"
 	"fmt"
 )
 
 func main() {
 
-	clearipClient, err := clearip.NewClient("API Key HERE")
+	iptraceClient, err := iptrace.NewClient("API Key HERE")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	response, err := clearipClient.IPRepo.GetAllDataByIP("IP HERE")
+	response, err := iptraceClient.IPRepo.GetAllDataByIP("IP HERE")
 	if err != nil {
 		fmt.Println(err)
 		return

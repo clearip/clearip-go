@@ -1,4 +1,4 @@
-package clearip
+package iptrace
 
 type TestHTTPClient struct{}
 

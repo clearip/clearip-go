@@ -1,4 +1,4 @@
-package clearip
+package iptrace
 
 import "fmt"
 
@@ -10,19 +10,19 @@ type Client struct {
 	APIKey     string
 }
 
-// BaseURI base url for clearip
-const defaultBaseURI = "https://api.clearip.io"
+// BaseURI base url for iptrace
+const defaultBaseURI = "https://api.iptrace.io"
 
-// NewClient returns a new ClearIp API client, configured with default HTTPClient.
+// NewClient returns a new iptrace API client, configured with default HTTPClient.
 func NewClient(apiKey string) (*Client, error) {
 
 	if len(apiKey) == 0 {
 		return nil, fmt.Errorf("API key required")
 	}
-	clearip := Client{APIKey: apiKey, BaseURI: defaultBaseURI}
-	clearip.HTTPClient = NewHTTPClient(clearip.APIKey, clearip.BaseURI)
-	clearip.setup()
-	return &clearip, nil
+	iptrace := Client{APIKey: apiKey, BaseURI: defaultBaseURI}
+	iptrace.HTTPClient = NewHTTPClient(iptrace.APIKey, iptrace.BaseURI)
+	iptrace.setup()
+	return &iptrace, nil
 }
 
 func (c *Client) setup() {
