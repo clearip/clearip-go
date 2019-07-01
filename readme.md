@@ -1,11 +1,11 @@
-# clearip.io Golang client
+# IPTrace.io Golang client
 
-Golang client for Clearip web-service API to determine location of visitors based on their IP. 
+Golang client for IPTrace web-service API to determine location of visitors based on their IP. 
 
 ## Installation
 
 ```bash
-go get -u github.com/clearip/clearip-go
+go get -u github.com/IPTrace/IPTrace-go
 ```
 
 ## usage
@@ -16,7 +16,7 @@ Get ip info:
 package main
 
 import (
-	clearip "github.com/clearip/clearip-go"
+	iptrace "github.com/IPTrace/IPTrace-go"
 	"fmt"
 )
 
